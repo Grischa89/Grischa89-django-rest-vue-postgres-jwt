@@ -1,0 +1,4 @@
+media/
+htmlcov/
+.coverage
+db.sqlite3
