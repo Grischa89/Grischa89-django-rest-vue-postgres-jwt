@@ -144,19 +144,7 @@ WSGI_APPLICATION = 'djackets_django.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-# for jwt maybe database has to change
 
-#FOR LOCAL
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'DEMO_TEST',
-#         'USER': 'postgres',
-#         'PASSWORD': '01062008Jana!!!',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
 
 #FOR PRODUCTION
 DATABASES = {
@@ -177,8 +165,6 @@ EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
