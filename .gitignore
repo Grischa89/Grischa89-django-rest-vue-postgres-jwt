@@ -2,5 +2,4 @@ media/
 htmlcov/
 .coverage
 db.sqlite3
-settings.py
-djackets_django/settings.py
+.env
