@@ -1,5 +1,7 @@
 media/
+static/
 htmlcov/
 .coverage
 db.sqlite3
 .env
+.coveragerc
