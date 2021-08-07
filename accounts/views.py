@@ -3,6 +3,23 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
 # from .serializers import UserSerializerWithToken
 
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+import requests
+
+class UserActivationView(APIView):
+    def get (self, request, uid, token):
+        protocol = 'https://' if request.is_secure() else 'http://'
+        web_url = protocol + request.get_host()
+        post_url = web_url + "/api/v1/accounts/users/activate/"
+        post_data = {'uid': uid, 'token': token}
+        result = requests.post(post_url, data = post_data)
+        content = result.text
+        print("reuslt:", result)
+        print("content:", content)
+        return Response(content)
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 

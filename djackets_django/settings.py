@@ -33,7 +33,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
         'api.djackets-vue.tk',
         'http://api.djackets-vue.tk',
-         '188.166.72.200',]
+         '188.166.72.200',
+         '127.0.0.1',]
 
 STRIPE_SECRET_KEY=config('STRIPE_SECRET_KEY') 
     
@@ -204,6 +205,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+print(STATIC_URL, STATIC_ROOT)
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -250,7 +252,7 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-# DOMAIN = 'localhost:8080' 
+DOMAIN = 'localhost:8080' 
 
 DJOSER = {
     'LOGIN_FIELD': 'email',
@@ -262,7 +264,7 @@ DJOSER = {
     'SET_PASSWORD_RETYPE': True,
     'PASSWORD_RESET_CONFIRM_URL': 'api/v1/password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': 'api/v1/email/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': 'activate/{uid}/{token}',
+    'ACTIVATION_URL': 'accounts/users/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
     'SOCIAL_AUTH_TOKEN_STRATEGY': 'djoser.social.token.jwt.TokenStrategy',
     'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['http://localhost:8000/google', 'http://localhost:8000/facebook'],
@@ -273,3 +275,17 @@ DJOSER = {
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
     }
 }
+
+AWS_ACCESS_KEY_ID=config('AWS_ACCESS_KEY_ID') 
+AWS_SECRET_ACCESS_KEY=config('AWS_SECRET_ACCESS_KEY') 
+AWS_STORAGE_BUCKET_NAME=config('AWS_STORAGE_BUCKET_NAME') 
+
+# AWS_S3_FILE_OVERWRITE=config('AWS_S3_FILE_OVERWRITE') 
+# AWS_DEFAULT_ACL=config('AWS_DEFAULT_ACL') 
+# DEFAULT_FILE_STORAGE=config('DEFAULT_FILE_STORAGE') 
+# STATICFILES_STORAGE=config('STATICFILES_STORAGE') 
+
+AWS_S3_FILE_OVERWRITE=False
+AWS_DEFAULT_ACL=None
+DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE='storages.backends.s3boto3.S3Boto3Storage' # use this only if you want to host static files outside of server

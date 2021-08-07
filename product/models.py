@@ -32,7 +32,7 @@ class Product(models.Model):
     description =models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    thumbnail =models.ImageField(upload_to='uploads/', blank=True, null=True)
+    thumbnail =models.ImageField(upload_to='thumbnails/', blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
     average_rating = models.FloatField( default=0) #blank=True
     counter_rating = models.IntegerField(default=0)
@@ -64,19 +64,28 @@ class Product(models.Model):
 
     def get_image(self):
         if self.image:
-            return 'http://127.0.0.1:8000' + self.image.url
+            output = "https://dbfordjackets1.s3.us-east-2.amazonaws.com/" + self.image.name
+            print("output: ", output)
+            return output
+            # return 'http://127.0.0.1:8000' + self.image.url
         else:
             return ''
     
     def get_thumbnail(self):
         if self.thumbnail:
-            return 'http://127.0.0.1:8000' + self.thumbnail.url
+
+            # return 'http://127.0.0.1:8000' + self.thumbnail.url
+            return "https://dbfordjackets1.s3.us-east-2.amazonaws.com/" + self.thumbnail.name
         else:
             if self.image:
                 self.thumbnail = self.make_thumbnail(self.image)
                 self.save()
 
-                return 'http://127.0.0.1:8000' + self.thumbnail.url
+
+                output = "https://dbfordjackets1.s3.us-east-2.amazonaws.com/thumbnails/" + self.thumbnail.name
+                print("output: ", output)
+                return output
+                # return 'http://127.0.0.1:8000' + self.thumbnail.url
 
             else:
                 return ''
