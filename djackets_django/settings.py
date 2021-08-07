@@ -252,7 +252,7 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-DOMAIN = 'localhost:8080' 
+DOMAIN = config('DOMAIN')  
 
 DJOSER = {
     'LOGIN_FIELD': 'email',
